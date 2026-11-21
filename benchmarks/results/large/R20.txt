@@ -1,0 +1,90 @@
+=== R20 run 1 ===
+WindowAgg  (cost=77027.89..111034.42 rows=122786 width=68) (actual time=53.637..54.474 rows=30 loops=1)
+  Buffers: shared hit=87068 read=3778
+  ->  Finalize GroupAggregate  (cost=76856.99..109192.63 rows=122786 width=36) (actual time=53.628..54.456 rows=30 loops=1)
+        Group Key: ((bookings.booked_at)::date)
+        Buffers: shared hit=87068 read=3778
+        ->  Gather Merge  (cost=76856.99..105509.05 rows=245572 width=36) (actual time=53.622..54.431 rows=90 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=87068 read=3778
+              ->  Sort  (cost=75856.96..76163.93 rows=122786 width=36) (actual time=52.185..52.186 rows=30 loops=3)
+                    Sort Key: ((bookings.booked_at)::date)
+                    Sort Method: quicksort  Memory: 27kB
+                    Buffers: shared hit=87068 read=3778
+                    Worker 0:  Sort Method: quicksort  Memory: 27kB
+                    Worker 1:  Sort Method: quicksort  Memory: 27kB
+                    ->  Partial HashAggregate  (cost=56281.04..62117.99 rows=122786 width=36) (actual time=52.082..52.167 rows=30 loops=3)
+                          Group Key: (bookings.booked_at)::date
+                          Planned Partitions: 8  Batches: 1  Memory Usage: 801kB
+                          Buffers: shared hit=87050 read=3778
+                          Worker 0:  Batches: 1  Memory Usage: 801kB
+                          Worker 1:  Batches: 1  Memory Usage: 801kB
+                          ->  Parallel Index Only Scan using bookings_confirmed_time_idx on bookings  (cost=0.43..30072.75 rows=409105 width=10) (actual time=0.041..32.774 rows=327385 loops=3)
+                                Index Cond: ((booked_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (booked_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                                Heap Fetches: 0
+                                Buffers: shared hit=87050 read=3778
+Planning:
+  Buffers: shared hit=299 read=3
+Planning Time: 0.435 ms
+Execution Time: 54.555 ms
+=== R20 run 2 ===
+WindowAgg  (cost=77027.89..111034.42 rows=122786 width=68) (actual time=51.064..51.773 rows=30 loops=1)
+  Buffers: shared hit=90848
+  ->  Finalize GroupAggregate  (cost=76856.99..109192.63 rows=122786 width=36) (actual time=51.056..51.758 rows=30 loops=1)
+        Group Key: ((bookings.booked_at)::date)
+        Buffers: shared hit=90848
+        ->  Gather Merge  (cost=76856.99..105509.05 rows=245572 width=36) (actual time=51.052..51.738 rows=90 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=90848
+              ->  Sort  (cost=75856.96..76163.93 rows=122786 width=36) (actual time=49.693..49.694 rows=30 loops=3)
+                    Sort Key: ((bookings.booked_at)::date)
+                    Sort Method: quicksort  Memory: 27kB
+                    Buffers: shared hit=90848
+                    Worker 0:  Sort Method: quicksort  Memory: 27kB
+                    Worker 1:  Sort Method: quicksort  Memory: 27kB
+                    ->  Partial HashAggregate  (cost=56281.04..62117.99 rows=122786 width=36) (actual time=49.614..49.684 rows=30 loops=3)
+                          Group Key: (bookings.booked_at)::date
+                          Planned Partitions: 8  Batches: 1  Memory Usage: 801kB
+                          Buffers: shared hit=90830
+                          Worker 0:  Batches: 1  Memory Usage: 801kB
+                          Worker 1:  Batches: 1  Memory Usage: 801kB
+                          ->  Parallel Index Only Scan using bookings_confirmed_time_idx on bookings  (cost=0.43..30072.75 rows=409105 width=10) (actual time=0.018..30.556 rows=327385 loops=3)
+                                Index Cond: ((booked_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (booked_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                                Heap Fetches: 0
+                                Buffers: shared hit=90830
+Planning:
+  Buffers: shared hit=302
+Planning Time: 0.433 ms
+Execution Time: 51.865 ms
+=== R20 run 3 ===
+WindowAgg  (cost=77027.89..111034.42 rows=122786 width=68) (actual time=51.697..52.395 rows=30 loops=1)
+  Buffers: shared hit=90856
+  ->  Finalize GroupAggregate  (cost=76856.99..109192.63 rows=122786 width=36) (actual time=51.688..52.379 rows=30 loops=1)
+        Group Key: ((bookings.booked_at)::date)
+        Buffers: shared hit=90856
+        ->  Gather Merge  (cost=76856.99..105509.05 rows=245572 width=36) (actual time=51.684..52.359 rows=90 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=90856
+              ->  Sort  (cost=75856.96..76163.93 rows=122786 width=36) (actual time=50.274..50.274 rows=30 loops=3)
+                    Sort Key: ((bookings.booked_at)::date)
+                    Sort Method: quicksort  Memory: 27kB
+                    Buffers: shared hit=90856
+                    Worker 0:  Sort Method: quicksort  Memory: 27kB
+                    Worker 1:  Sort Method: quicksort  Memory: 27kB
+                    ->  Partial HashAggregate  (cost=56281.04..62117.99 rows=122786 width=36) (actual time=50.189..50.264 rows=30 loops=3)
+                          Group Key: (bookings.booked_at)::date
+                          Planned Partitions: 8  Batches: 1  Memory Usage: 801kB
+                          Buffers: shared hit=90838
+                          Worker 0:  Batches: 1  Memory Usage: 801kB
+                          Worker 1:  Batches: 1  Memory Usage: 801kB
+                          ->  Parallel Index Only Scan using bookings_confirmed_time_idx on bookings  (cost=0.43..30072.75 rows=409105 width=10) (actual time=0.018..30.666 rows=327385 loops=3)
+                                Index Cond: ((booked_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (booked_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                                Heap Fetches: 0
+                                Buffers: shared hit=90838
+Planning:
+  Buffers: shared hit=302
+Planning Time: 0.455 ms
+Execution Time: 52.472 ms
