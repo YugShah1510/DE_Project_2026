@@ -1,0 +1,63 @@
+=== R17 run 1 ===
+Nested Loop Anti Join  (cost=1.29..11597.58 rows=193 width=15) (actual time=0.474..8.847 rows=27 loops=1)
+  Buffers: shared hit=1644 read=150
+  ->  Index Scan using seats_screen_id_row_label_seat_number_key on seats se  (cost=0.43..357.22 rows=199 width=15) (actual time=0.466..0.468 rows=40 loops=1)
+        Index Cond: (screen_id = 101)
+        Buffers: shared read=4
+  ->  Nested Loop  (cost=0.86..57.78 rows=33 width=4) (actual time=0.209..0.209 rows=0 loops=40)
+        Buffers: shared hit=1644 read=146
+        ->  Index Only Scan using booking_seats_seat_show_idx on booking_seats bs  (cost=0.43..6.81 rows=107 width=8) (actual time=0.001..0.001 rows=10 loops=40)
+              Index Cond: (seat_id = se.seat_id)
+              Heap Fetches: 0
+              Buffers: shared hit=226 read=4
+        ->  Index Scan using shows_pkey on shows s  (cost=0.43..0.48 rows=1 width=4) (actual time=0.021..0.021 rows=0 loops=390)
+              Index Cond: (show_id = bs.show_id)
+              Filter: ((starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Rows Removed by Filter: 1
+              Buffers: shared hit=1418 read=142
+Planning:
+  Buffers: shared hit=448 read=21
+Planning Time: 0.878 ms
+Execution Time: 8.869 ms
+=== R17 run 2 ===
+Nested Loop Anti Join  (cost=1.29..11597.58 rows=193 width=15) (actual time=0.011..0.445 rows=27 loops=1)
+  Buffers: shared hit=1794
+  ->  Index Scan using seats_screen_id_row_label_seat_number_key on seats se  (cost=0.43..357.22 rows=199 width=15) (actual time=0.007..0.009 rows=40 loops=1)
+        Index Cond: (screen_id = 101)
+        Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.86..57.78 rows=33 width=4) (actual time=0.011..0.011 rows=0 loops=40)
+        Buffers: shared hit=1790
+        ->  Index Only Scan using booking_seats_seat_show_idx on booking_seats bs  (cost=0.43..6.81 rows=107 width=8) (actual time=0.001..0.001 rows=10 loops=40)
+              Index Cond: (seat_id = se.seat_id)
+              Heap Fetches: 0
+              Buffers: shared hit=230
+        ->  Index Scan using shows_pkey on shows s  (cost=0.43..0.48 rows=1 width=4) (actual time=0.001..0.001 rows=0 loops=390)
+              Index Cond: (show_id = bs.show_id)
+              Filter: ((starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Rows Removed by Filter: 1
+              Buffers: shared hit=1560
+Planning:
+  Buffers: shared hit=469
+Planning Time: 0.646 ms
+Execution Time: 0.466 ms
+=== R17 run 3 ===
+Nested Loop Anti Join  (cost=1.29..11597.58 rows=193 width=15) (actual time=0.011..0.465 rows=27 loops=1)
+  Buffers: shared hit=1794
+  ->  Index Scan using seats_screen_id_row_label_seat_number_key on seats se  (cost=0.43..357.22 rows=199 width=15) (actual time=0.007..0.009 rows=40 loops=1)
+        Index Cond: (screen_id = 101)
+        Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.86..57.78 rows=33 width=4) (actual time=0.011..0.011 rows=0 loops=40)
+        Buffers: shared hit=1790
+        ->  Index Only Scan using booking_seats_seat_show_idx on booking_seats bs  (cost=0.43..6.81 rows=107 width=8) (actual time=0.001..0.001 rows=10 loops=40)
+              Index Cond: (seat_id = se.seat_id)
+              Heap Fetches: 0
+              Buffers: shared hit=230
+        ->  Index Scan using shows_pkey on shows s  (cost=0.43..0.48 rows=1 width=4) (actual time=0.001..0.001 rows=0 loops=390)
+              Index Cond: (show_id = bs.show_id)
+              Filter: ((starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Rows Removed by Filter: 1
+              Buffers: shared hit=1560
+Planning:
+  Buffers: shared hit=469
+Planning Time: 0.674 ms
+Execution Time: 0.493 ms

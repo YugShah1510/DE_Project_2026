@@ -1,0 +1,78 @@
+=== R15 run 1 ===
+Finalize GroupAggregate  (cost=249123.40..281461.16 rows=122794 width=72) (actual time=256.966..257.641 rows=168 loops=1)
+  Group Key: (EXTRACT(isodow FROM booked_at)), (EXTRACT(hour FROM booked_at))
+  Buffers: shared hit=112 read=43117
+  ->  Gather Merge  (cost=249123.40..277777.34 rows=245588 width=72) (actual time=256.962..257.601 rows=504 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=112 read=43117
+        ->  Sort  (cost=248123.38..248430.36 rows=122794 width=72) (actual time=255.543..255.546 rows=168 loops=3)
+              Sort Key: (EXTRACT(isodow FROM booked_at)), (EXTRACT(hour FROM booked_at))
+              Sort Method: quicksort  Memory: 31kB
+              Buffers: shared hit=112 read=43117
+              Worker 0:  Sort Method: quicksort  Memory: 31kB
+              Worker 1:  Sort Method: quicksort  Memory: 31kB
+              ->  Partial HashAggregate  (cost=203973.98..232707.17 rows=122794 width=72) (actual time=255.335..255.481 rows=168 loops=3)
+                    Group Key: EXTRACT(isodow FROM booked_at), EXTRACT(hour FROM booked_at)
+                    Planned Partitions: 4  Batches: 1  Memory Usage: 1569kB
+                    Buffers: shared hit=96 read=43117
+                    Worker 0:  Batches: 1  Memory Usage: 1569kB
+                    Worker 1:  Batches: 1  Memory Usage: 1569kB
+                    ->  Parallel Seq Scan on bookings  (cost=0.00..61988.01 rows=1251667 width=64) (actual time=0.024..166.368 rows=1001359 loops=3)
+                          Buffers: shared hit=96 read=43117
+Planning:
+  Buffers: shared hit=252
+Planning Time: 0.354 ms
+Execution Time: 257.767 ms
+=== R15 run 2 ===
+Finalize GroupAggregate  (cost=249123.40..281461.16 rows=122794 width=72) (actual time=265.836..266.537 rows=168 loops=1)
+  Group Key: (EXTRACT(isodow FROM booked_at)), (EXTRACT(hour FROM booked_at))
+  Buffers: shared hit=208 read=43021
+  ->  Gather Merge  (cost=249123.40..277777.34 rows=245588 width=72) (actual time=265.832..266.494 rows=504 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=208 read=43021
+        ->  Sort  (cost=248123.38..248430.36 rows=122794 width=72) (actual time=264.408..264.411 rows=168 loops=3)
+              Sort Key: (EXTRACT(isodow FROM booked_at)), (EXTRACT(hour FROM booked_at))
+              Sort Method: quicksort  Memory: 31kB
+              Buffers: shared hit=208 read=43021
+              Worker 0:  Sort Method: quicksort  Memory: 31kB
+              Worker 1:  Sort Method: quicksort  Memory: 31kB
+              ->  Partial HashAggregate  (cost=203973.98..232707.17 rows=122794 width=72) (actual time=264.201..264.346 rows=168 loops=3)
+                    Group Key: EXTRACT(isodow FROM booked_at), EXTRACT(hour FROM booked_at)
+                    Planned Partitions: 4  Batches: 1  Memory Usage: 1569kB
+                    Buffers: shared hit=192 read=43021
+                    Worker 0:  Batches: 1  Memory Usage: 1569kB
+                    Worker 1:  Batches: 1  Memory Usage: 1569kB
+                    ->  Parallel Seq Scan on bookings  (cost=0.00..61988.01 rows=1251667 width=64) (actual time=0.023..173.958 rows=1001359 loops=3)
+                          Buffers: shared hit=192 read=43021
+Planning:
+  Buffers: shared hit=252
+Planning Time: 0.424 ms
+Execution Time: 266.662 ms
+=== R15 run 3 ===
+Finalize GroupAggregate  (cost=249123.40..281461.16 rows=122794 width=72) (actual time=267.580..268.297 rows=168 loops=1)
+  Group Key: (EXTRACT(isodow FROM booked_at)), (EXTRACT(hour FROM booked_at))
+  Buffers: shared hit=304 read=42925
+  ->  Gather Merge  (cost=249123.40..277777.34 rows=245588 width=72) (actual time=267.575..268.252 rows=504 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=304 read=42925
+        ->  Sort  (cost=248123.38..248430.36 rows=122794 width=72) (actual time=266.279..266.283 rows=168 loops=3)
+              Sort Key: (EXTRACT(isodow FROM booked_at)), (EXTRACT(hour FROM booked_at))
+              Sort Method: quicksort  Memory: 31kB
+              Buffers: shared hit=304 read=42925
+              Worker 0:  Sort Method: quicksort  Memory: 31kB
+              Worker 1:  Sort Method: quicksort  Memory: 31kB
+              ->  Partial HashAggregate  (cost=203973.98..232707.17 rows=122794 width=72) (actual time=266.072..266.217 rows=168 loops=3)
+                    Group Key: EXTRACT(isodow FROM booked_at), EXTRACT(hour FROM booked_at)
+                    Planned Partitions: 4  Batches: 1  Memory Usage: 1569kB
+                    Buffers: shared hit=288 read=42925
+                    Worker 0:  Batches: 1  Memory Usage: 1569kB
+                    Worker 1:  Batches: 1  Memory Usage: 1569kB
+                    ->  Parallel Seq Scan on bookings  (cost=0.00..61988.01 rows=1251667 width=64) (actual time=0.023..173.487 rows=1001359 loops=3)
+                          Buffers: shared hit=288 read=42925
+Planning:
+  Buffers: shared hit=252
+Planning Time: 0.359 ms
+Execution Time: 268.425 ms

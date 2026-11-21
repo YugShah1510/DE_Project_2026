@@ -1,17 +1,17 @@
 \set ON_ERROR_STOP on
 SET search_path TO bms;
 
-\copy cities FROM 'seed_data/cities.csv' WITH (FORMAT csv, HEADER true)
-\copy venues FROM 'seed_data/venues.csv' WITH (FORMAT csv, HEADER true)
-\copy screens FROM 'seed_data/screens.csv' WITH (FORMAT csv, HEADER true)
-\copy seats FROM 'seed_data/seats.csv' WITH (FORMAT csv, HEADER true)
-\copy movies FROM 'seed_data/movies.csv' WITH (FORMAT csv, HEADER true)
-\copy shows FROM 'seed_data/shows.csv' WITH (FORMAT csv, HEADER true)
-\copy customers FROM 'seed_data/customers.csv' WITH (FORMAT csv, HEADER true)
-\copy offers FROM 'seed_data/offers.csv' WITH (FORMAT csv, HEADER true)
-\copy bookings FROM 'seed_data/bookings.csv' WITH (FORMAT csv, HEADER true)
-\copy booking_seats FROM 'seed_data/booking_seats.csv' WITH (FORMAT csv, HEADER true)
-\copy movie_reviews FROM 'seed_data/movie_reviews.csv' WITH (FORMAT csv, HEADER true)
+\copy cities FROM 'large_data/cities.csv' WITH (FORMAT csv, HEADER true)
+\copy venues FROM 'large_data/venues.csv' WITH (FORMAT csv, HEADER true)
+\copy screens FROM 'large_data/screens.csv' WITH (FORMAT csv, HEADER true)
+\copy seats FROM 'large_data/seats.csv' WITH (FORMAT csv, HEADER true)
+\copy movies FROM 'large_data/movies.csv' WITH (FORMAT csv, HEADER true)
+\copy shows FROM 'large_data/shows.csv' WITH (FORMAT csv, HEADER true)
+\copy customers FROM 'large_data/customers.csv' WITH (FORMAT csv, HEADER true)
+\copy offers FROM 'large_data/offers.csv' WITH (FORMAT csv, HEADER true)
+\copy bookings FROM 'large_data/bookings.csv' WITH (FORMAT csv, HEADER true)
+\copy booking_seats FROM 'large_data/booking_seats.csv' WITH (FORMAT csv, HEADER true)
+\copy movie_reviews FROM 'large_data/movie_reviews.csv' WITH (FORMAT csv, HEADER true)
 
 ANALYZE;
 
